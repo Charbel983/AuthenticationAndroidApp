@@ -3,9 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/charb/AndroidStudioProjects/AuthenticationApp/app/src/main/res/layout/activity_about_us.xml" value="0.2" />
+        <entry key="..\:/Users/charb/AndroidStudioProjects/AuthenticationApp/app/src/main/res/layout/activity_change_password.xml" value="0.21" />
+        <entry key="..\:/Users/charb/AndroidStudioProjects/AuthenticationApp/app/src/main/res/layout/activity_edit_profile.xml" value="0.1841880341880342" />
         <entry key="..\:/Users/charb/AndroidStudioProjects/AuthenticationApp/app/src/main/res/layout/activity_home_screen.xml" value="0.22" />
         <entry key="..\:/Users/charb/AndroidStudioProjects/AuthenticationApp/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/charb/AndroidStudioProjects/AuthenticationApp/app/src/main/res/layout/activity_more.xml" value="0.25" />
+        <entry key="..\:/Users/charb/AndroidStudioProjects/AuthenticationApp/app/src/main/res/layout/activity_news.xml" value="0.25" />
         <entry key="..\:/Users/charb/AndroidStudioProjects/AuthenticationApp/app/src/main/res/layout/activity_signup.xml" value="0.1841880341880342" />
+        <entry key="..\:/Users/charb/AndroidStudioProjects/AuthenticationApp/app/src/main/res/layout/fragment_more.xml" value="0.22" />
+        <entry key="..\:/Users/charb/AndroidStudioProjects/AuthenticationApp/app/src/main/res/layout/fragment_news.xml" value="0.22" />
       </map>
     </option>
   </component>

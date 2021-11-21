@@ -1,37 +1,29 @@
-package com.example.authenticationapp
+package com.example.authenticationapp.activities
 
 import android.content.Intent
-import android.database.sqlite.SQLiteDatabase
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Patterns
 import android.widget.Toast
+import com.example.authenticationapp.Database
+import com.example.authenticationapp.R
 import kotlinx.android.synthetic.main.activity_signup.*
 
-open class SignupActivity : AppCompatActivity() {
+open class SignupActivity : AppCompatActivity(){
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
-        val database = baseContext.openOrCreateDatabase("users", MODE_PRIVATE, null)
-        database.execSQL("CREATE TABLE IF NOT EXISTS user(firstName TEXT, lastName TEXT, email TEXT, password TEXT)")
+        val db = this.openOrCreateDatabase("users", MODE_PRIVATE, null)
+        val obj = Database(db)
+        obj.createTable()
 
-        fun emailAlreadyExists(emailCheck : String) : Boolean {
-            try{
-                val cursor = database.rawQuery("SELECT email FROM user WHERE email = '$emailCheck'", null)
-                if(cursor.moveToFirst()){
-                    database.close()
-                    return true
-                }
-            }catch(errorException : Exception){
-                database.close()
-            }
-            return false
-        }
+
 
         createAccountButton.setOnClickListener{
             val gd = GradientDrawable()
@@ -49,7 +41,7 @@ open class SignupActivity : AppCompatActivity() {
             val emailCorrect : Boolean
             val passwordCorrect : Boolean
             val confirmPasswordCorrect : Boolean
-            var emailExists : Boolean = true
+            var emailExists = true
             if(firstNameText.text.isEmpty()){
                 firstNameText.error = "You must fill this block"
                 gd4.setStroke(5, Color.RED)
@@ -66,16 +58,16 @@ open class SignupActivity : AppCompatActivity() {
                 gd5.setStroke(2, Color.TRANSPARENT)
                 lastNameCorrect = true
             }
-            if(!TextUtils.isEmpty(signupEmailText.text) && Patterns.EMAIL_ADDRESS.matcher(signupEmailText.text).matches()){
+            if(TextUtils.isEmpty(signupEmailText.text) || !Patterns.EMAIL_ADDRESS.matcher(signupEmailText.text).matches()){
+                gd.setStroke(5, Color.RED)
+                signupEmailText.error = "Not a valid email format"
+                emailCorrect = false
+            }
+            else{
                 gd.setStroke(2, Color.TRANSPARENT)
                 emailCorrect = true
             }
-            else{
-                signupEmailText.error = "Not a valid email format"
-                gd.setStroke(5, Color.RED)
-                emailCorrect = false
-            }
-            if(emailAlreadyExists(signupEmailText.text.toString())){
+            if(obj.emailAlreadyExists(signupEmailText.text.toString())){
                 gd.setStroke(5, Color.RED)
                 signupEmailText.error = "Email already exists"
             }else{
@@ -103,7 +95,8 @@ open class SignupActivity : AppCompatActivity() {
                 val userLastName = lastNameText.text.toString()
                 val userEmail = signupEmailText.text.toString()
                 val userPassword = signupPasswordText.text.toString()
-                database.execSQL("INSERT INTO user(firstName, lastName, email, password) VALUES('$userFirstName', '$userLastName', '$userEmail', '$userPassword')")
+                val defaultImage = Uri.parse("android.resource://com.example.authenticationapp/R.drawable.defaultpfp").toString()
+                obj.addData(userFirstName, userLastName, userEmail, userPassword, defaultImage)
                 val login = Intent(this, MainActivity::class.java)
                 startActivity(login)
             }else{
