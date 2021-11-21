@@ -1,13 +1,10 @@
 package com.example.authenticationapp.fragments
 
-import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.Intent
-import android.database.Cursor
 import android.graphics.Paint
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -20,7 +17,6 @@ import com.example.authenticationapp.R
 import com.example.authenticationapp.activities.AboutUsActivity
 import com.example.authenticationapp.activities.ChangePasswordActivity
 import com.example.authenticationapp.activities.EditProfileActivity
-import kotlinx.android.synthetic.main.fragment_more.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
