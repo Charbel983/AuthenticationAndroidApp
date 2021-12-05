@@ -3,7 +3,6 @@ package com.example.authenticationapp.fragments
 import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.graphics.Paint
-import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,11 +11,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import com.example.authenticationapp.Database
+import androidx.lifecycle.ViewModelProvider
 import com.example.authenticationapp.R
 import com.example.authenticationapp.activities.AboutUsActivity
 import com.example.authenticationapp.activities.ChangePasswordActivity
 import com.example.authenticationapp.activities.EditProfileActivity
+import com.example.authenticationapp.viewModels.MoreTabViewModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -55,17 +55,18 @@ class MoreFragment : Fragment() {
         val changePasswordButton = parentHolder.findViewById<Button>(R.id.changePasswordButton)
         val sharedPrefs = this.activity?.getSharedPreferences("autoLogin", MODE_PRIVATE)
         val email = sharedPrefs?.getString("email", null)
-        val database = this.activity?.openOrCreateDatabase("users", MODE_PRIVATE, null)
-        val obj = Database(database)
-        val firstName = obj.getFirstName(email)
-        val lastName = obj.getLastName(email)
+//        val database = this.activity?.openOrCreateDatabase("users", MODE_PRIVATE, null)
+//        val obj = Database(database)
+        val viewModel = ViewModelProvider(this).get(MoreTabViewModel::class.java)
         val profilePicture = parentHolder.findViewById<ImageView>(R.id.profilePicture)
 
 
-        val image = obj.getProfilePicture(email)
-        profilePicture.setImageURI(Uri.parse(image))
-        emailText.text = "$email"
-        fullNameText.text = "$firstName $lastName"
+        viewModel.setData(email, requireContext())
+
+        viewModel.profilePic.observe(viewLifecycleOwner, { selected -> profilePicture.setImageURI(selected) })
+        viewModel.emailAdr.observe(viewLifecycleOwner, { selected -> emailText.text = selected })
+        viewModel.name.observe(viewLifecycleOwner, { selected -> fullNameText.text = selected })
+
         aboutUsButton.paintFlags = Paint.UNDERLINE_TEXT_FLAG
         editProfileButton.setOnClickListener{
             startActivity(Intent(this.context, EditProfileActivity::class.java))

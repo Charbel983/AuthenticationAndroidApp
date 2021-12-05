@@ -2,4 +2,19 @@
     <string name="app_name">AuthenticationApp</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="webViewURL">https://euriskomobility.com/mobile-app-development-services/</string>
+    <string name="passwordError">Password must be at least 6 characters</string>
+    <string name="somethingWentWrong">Something went wrong</string>
+    <string name="changesSaved">Changes Saved</string>
+    <string name="emailExists">Email already exists</string>
+    <string name="emailFormatError">Not a valid email format</string>
+    <string name="passwordDoesNotMatch">Does not match previous password</string>
+    <string name="doesNotMatchOldPass">Does not match old password</string>
+    <string name="passwordChanged">Password Changed</string>
+    <string name="dataFailed">Data failed to load</string>
+    <string name="samePassword">Your password is the same as the old one</string>
+    <string name="blockEmpty">You must fill this block</string>
+    <string name="defaultProfile">android.resource://com.example.authenticationapp/R.drawable.defaultprofile</string>
+    <string name="newsUrl">https://api.nytimes.com/svc/mostpopular/v2/viewed/</string>
+    <string name="loadedSuccessfullyMessage">News loaded successfully</string>
+    <string name="internetProblem">Check your internet connection</string>
 </resources>

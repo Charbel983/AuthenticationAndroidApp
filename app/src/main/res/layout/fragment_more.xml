@@ -23,11 +23,11 @@
 
             <ImageView
                 android:id="@+id/profilePicture"
-                android:layout_width="138dp"
-                android:layout_height="125dp"
-                android:background="@drawable/defaultpfp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:background="@drawable/defaultprofile"
                 android:scaleType="centerCrop"
-                android:src="@drawable/defaultpfp"
+                android:src="@drawable/defaultprofile"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

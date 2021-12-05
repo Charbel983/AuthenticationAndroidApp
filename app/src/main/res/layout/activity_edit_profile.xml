@@ -36,10 +36,10 @@
             android:layout_width="151dp"
             android:layout_height="148dp"
             android:layout_marginEnd="132dp"
-            android:background="@drawable/defaultpfp"
+            android:background="@drawable/defaultprofile"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/defaultpfp"
+            app:srcCompat="@drawable/defaultprofile"
             tools:ignore="SpeakableTextPresentCheck"
             tools:layout_editor_absoluteY="243dp" />
     </androidx.cardview.widget.CardView>
